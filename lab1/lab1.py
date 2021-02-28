@@ -7,9 +7,9 @@ a1 = randrange(1, 21)
 a2 = randrange(1, 21)
 a3 = randrange(1, 21)
 
-x1 = [randrange(1,21,1) for _ in range(8)]
-x2 = [randrange(1,21,1) for _ in range(8)]
-x3 = [randrange(1,21,1) for _ in range(8)]
+x1 = [randrange(1,21) for _ in range(8)]
+x2 = [randrange(1,21) for _ in range(8)]
+x3 = [randrange(1,21) for _ in range(8)]
 
 x01 = (max(x1)+min(x1))/2
 x02 = (max(x2)+min(x2))/2
