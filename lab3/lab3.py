@@ -4,6 +4,7 @@ from scipy.stats import t, f
 import random as r
 import prettytable as p
 from prettytable import PrettyTable
+import time
 
 table0 = PrettyTable()
 table0.field_names = (["Студент", "Группа"])
