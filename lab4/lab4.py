@@ -69,7 +69,7 @@ def get_cohren_critical(prob, f1, f2):
 fisher_teor = partial(f.ppf, q=1 - 0.05)
 student_teor = partial(t.ppf, q=1 - 0.025)
 
-odnorid = False
+odnorid = False #Використовується для виходу з циклу коли дисперсії неоднорідні
 adekvat = False
 while not adekvat:
     while not odnorid:
@@ -213,7 +213,7 @@ while not adekvat:
         x2x3 = [a * b for a, b in zip(x2, x3)]
         x1x2x3 = [a * b * c for a, b, c in zip(x1, x2, x3)]
         m = 3
-        odnorid2 = False
+        odnorid2 = False #Використовується для виходу з циклу коли дисперсії не однорідні, але odnorid2 на відміну від odnorid, робить перевірку в критерії Стьюдента
         while not odnorid2:
             y1, y2, y3 = [], [], []
             for i in range(N):
