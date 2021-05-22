@@ -5,6 +5,7 @@ from scipy.stats import t, f
 import sklearn.linear_model as lm
 from functools import partial
 from prettytable import PrettyTable
+import time
 
 table0 = PrettyTable()
 table0.field_names = (["Студент", "Группа"])
@@ -91,6 +92,10 @@ def find_coefs(x, y):
     B = skm.coef_
     print('Коефіціенти: ')
     print(B)
+    t = time.time() - start_time
+    print("Час пошуку: ", t)
+    if t > 0.1:
+        B = False
     return B
 
 def perevirka(x, y, b):
@@ -187,8 +192,14 @@ if __name__ == "__main__":
             if odnorid == False:
                 m+=1
         B = find_coefs(x_matrix,    y_avr)
-        perevirka(x_matrix, y_avr, B)
-        new_B, d = kriteriy_studenta(x_matrix_norm, y, y_avr, n, m, B)
-        new_y_pract = get_new_y(x_matrix, new_B)
+                if B.all() != False or type(B) == list:
 
-        adekvat, odnorid = kriteriy_fishera(m, n, 4, new_y_pract, y_avr, y)
+            perevirka(x_matrix, y_avr, B)
+            new_B, d = kriteriy_studenta(x_matrix_norm, y, y_avr, n, m, B)
+            new_y_pract = get_new_y(x_matrix, new_B)
+
+            adekvat, odnorid = kriteriy_fishera(m, n, 4, new_y_pract, y_avr, y)
+
+        else:
+            print("Затраченний час більше за 0.1, тому модель неадекватна")
+            adekvat, odnorid = False, False
