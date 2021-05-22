@@ -167,6 +167,7 @@ while (flag):
     print("Середнє y3 =", y_aver[3])
 
     # Кохрен
+    start_time = time.time()
     y_var = [np.var(Y_exp[i]) for i in range(N)]
     flag = False
     f1 = m - 1
@@ -177,9 +178,11 @@ while (flag):
     print('-' * 100)
     if (Gkr > Gp):
         print("Gkr = {0} > Gp = {1} ---> Дисперсії однорідні".format(Gkr, Gp))
+        print("Час перевірки за критерієм Кохрена: ", time.time() - start_time)
         flag = False
     else:
         print("Gkr = {0} < Gp = {1} ---> Дисперсії неоднорідні, збільшимо m і проведемо розрахунки".format(Gkr, Gp))
+        print("Час перевірки за критерієм Кохрена: ", time.time() - start_time)
         Y_exp[0].append(r.randint(math.floor(Y_min), math.floor(Y_max)))
         Y_exp[1].append(r.randint(math.floor(Y_min), math.floor(Y_max)))
         Y_exp[2].append(r.randint(math.floor(Y_min), math.floor(Y_max)))
@@ -187,6 +190,7 @@ while (flag):
         m += 1
 
 # Стьюдент
+start_time = time.time()
 S2B = sum(y_var) / N
 S2b = S2B / (N * m)
 Sb = math.sqrt(S2b)
@@ -207,6 +211,8 @@ a1 = a1 if tkr < t1 else 0
 a2 = a2 if tkr < t2 else 0
 a3 = a3 if tkr < t3 else 0
 
+print("Час перевірки за критерієм Стьюдента: ", time.time() - start_time)
+
 y_new = [y_perevirka_abs(x_abs[0][i], x_abs[1][i], x_abs[2][i]) for i in range(N)]
 
 print("-" * 100)
@@ -218,6 +224,7 @@ print("Р-ня регресії для Х13, Х23, Х33 =", y_new[2])
 print("Р-ня регресії для Х14, Х24, Х34 =", y_new[3])
 
 #Фішер
+start_time = time.time()
 print("-"*100)
 f4 = N - d
 S2ad = (m/(N-d))*sum([(y_new[i] - y_aver[i])**2 for i in range(N)])
@@ -227,4 +234,5 @@ if(Fkr > Fp):
     print("Fkr = {0} > Fp = {1} ---> Р-ня адекватне оригіналу".format(Fkr, Fp))
 else:
     print("Fkr = {0} < Fp = {1} ---> Р-ня неадекватне оригіналу".format(Fkr, Fp))
+print("Час перевірки за критерієм Фішера: ", time.time() - start_time)
 
