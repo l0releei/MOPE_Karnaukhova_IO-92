@@ -137,3 +137,6 @@ while True:
             break
         print("Збільшуємо m на 1")
         a += 1
+         if a == 20:
+            print("Ви досягли ліміту експериментів")
+            break
