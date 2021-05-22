@@ -1,5 +1,6 @@
 from random import randrange
 from prettytable import PrettyTable
+import time
 
 table0 = PrettyTable()
 table0.field_names = (["Студент", "Группа"])
