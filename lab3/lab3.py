@@ -217,3 +217,14 @@ print("Р-ня регресії для Х12, Х22, Х32 =", y_new[1])
 print("Р-ня регресії для Х13, Х23, Х33 =", y_new[2])
 print("Р-ня регресії для Х14, Х24, Х34 =", y_new[3])
 
+#Фішер
+print("-"*100)
+f4 = N - d
+S2ad = (m/(N-d))*sum([(y_new[i] - y_aver[i])**2 for i in range(N)])
+Fp = S2ad/S2b
+Fkr = get_fisher_critical(prob, f3, f4)
+if(Fkr > Fp):
+    print("Fkr = {0} > Fp = {1} ---> Р-ня адекватне оригіналу".format(Fkr, Fp))
+else:
+    print("Fkr = {0} < Fp = {1} ---> Р-ня неадекватне оригіналу".format(Fkr, Fp))
+
