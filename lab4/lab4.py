@@ -5,7 +5,14 @@ import random as r
 from functools import partial
 import prettytable as p
 from numpy.linalg import solve
+from prettytable import PrettyTable
 
+table0 = PrettyTable()
+table0.field_names = (["Студент", "Группа"])
+name = "Карнаухова Анастасія"
+group = "ІО-92"
+table0.add_row([name, group])
+print(table0)
 
 m = 3
 prob = 0.95
